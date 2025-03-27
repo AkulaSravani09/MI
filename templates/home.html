@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Myocardial Infarction Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        table {
+            margin: auto;
+            text-align: left;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #ff758c;
+            color: white;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 90%;
+        }
+        input[type="submit"] {
+            background: linear-gradient(120deg, #ff758c, #ff7eb3);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(120deg, #ff5f6d, #ff7eb3);
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color: white;">Enter Patient Details</h2>
+    <div class="container">
+        <form action="/predict" method="post">
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                </tr>
+                {% for feature, range, description in features_info %}
+                <tr>
+                    <td>{{ feature }}</td>
+                    <td>{{ description }}</td>
+                    <td><input type="number" name="{{ feature }}" step="any" required></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
